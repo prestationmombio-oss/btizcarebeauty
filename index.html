@@ -1,0 +1,131 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ktiz Care Beauty</title><meta name="theme-color" content="#5E1A2B"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#5E1A2B;--gold:#B5883A;--ivory:#FBF6EE;--rose:#F3E3DC;--ink:#2A1A1D;--mut:#7a6a6c;font-family:Jost,system-ui,sans-serif;color:var(--ink)}
+*{box-sizing:border-box}body{margin:0;background:var(--ivory);padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;margin:0;color:var(--wine)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:0;z-index:5;background:var(--wine);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top))}
+header img{width:40px;height:40px;border-radius:50%}header b{font:700 1.25rem 'Cormorant Garamond',serif;flex:1}
+.ib{background:none;border:1px solid #ffffff55;color:#fff;border-radius:20px;padding:7px 13px;font-size:.85rem}
+.ib.on{background:var(--gold);border-color:var(--gold)}
+.hero{padding:26px 16px 10px;max-width:900px;margin:auto}.hero h1{font-size:2.3rem;line-height:1.05}
+.hero p{margin:8px 0 0;color:var(--mut);max-width:46ch}
+.info{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.info span{background:var(--rose);padding:6px 12px;border-radius:20px;font-size:.82rem}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;max-width:900px;margin:auto}
+.chips button{flex:none;border:1px solid var(--gold);background:none;border-radius:20px;padding:7px 14px;color:var(--wine)}
+.chips button.on{background:var(--wine);border-color:var(--wine);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:4px 16px 90px;max-width:900px;margin:auto}
+.card{background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 8px #5e1a2b14}
+.card .im{aspect-ratio:4/5;background:var(--rose) center/cover;display:grid;place-items:center}
+.card .im img{width:100%;height:100%;object-fit:cover;object-position:top}.card .im.no img{width:46%;height:auto;opacity:.5;border-radius:50%}
+.card div.b{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}.card h3{font-size:1.1rem;line-height:1.1}
+.card small{color:var(--mut)}.card select{border:1px solid #e3d3cc;border-radius:8px;padding:6px;background:#fff}
+.add{margin-top:auto;background:var(--wine);color:#fff;border:0;border-radius:10px;padding:9px}
+.price{font-weight:600;color:var(--gold)}
+.bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));max-width:600px;margin:auto;background:var(--gold);color:#fff;border:0;border-radius:14px;padding:14px;font-weight:600;display:none;justify-content:space-between;box-shadow:0 4px 16px #0003}
+dialog{border:0;border-radius:16px;padding:18px;width:min(94vw,460px);max-height:90vh;background:var(--ivory)}dialog::backdrop{background:#2a1a1d88}
+dialog h2{margin-bottom:10px}label{display:block;font-size:.85rem;margin:10px 0 3px;color:var(--mut)}
+input,select,textarea{width:100%;border:1px solid #e3d3cc;border-radius:8px;padding:10px;background:#fff}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eadcd5}
+.q button{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);background:none}
+.pri{width:100%;margin-top:14px;background:var(--wine);color:#fff;border:0;border-radius:10px;padding:12px;font-weight:600}
+.lnk{background:none;border:0;color:var(--wine);text-decoration:underline;padding:8px 0}
+#nv{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--wine);display:flex;padding-bottom:env(safe-area-inset-bottom)}#nv button{flex:1;background:none;border:0;color:#ffffffb0;padding:14px 2px;font-size:.78rem}#nv button.on{color:#fff;box-shadow:inset 0 3px var(--gold)}#ord{max-width:900px;margin:auto;padding:16px}
+#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;display:none;z-index:9;max-width:90vw}
+#adm{max-width:900px;margin:auto;padding:16px 16px 60px}#adm .tabs{display:flex;gap:8px;margin:12px 0}
+.ord{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;font-size:.9rem}.ord select{width:auto;padding:5px}
+@media(prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:active{transform:scale(.98)}}
+</style></head><body>
+<header><img src="img/logo.jpg" alt=""><b>Ktiz Care Beauty</b><button class="ib" id="ins" hidden>Installer</button></header>
+<main id="shop"><section class="hero"><h1>Votre peau mérite le meilleur.</h1><p>Gels douche, savons et crèmes pour un teint lumineux et uniforme.</p>
+<div class="info"><span>Lun–Sam, 9h–20h</span><span>Commandez la veille, livré le lendemain</span><span>Livraison rapide et discrète</span></div></section>
+<nav class="chips" id="chips" aria-label="Catégories"></nav><div class="grid" id="grid"></div></main>
+<section id="adm" hidden></section>
+<section id="ord" hidden></section>
+<nav id="nv"><button data-v="s" class="on">Accueil</button><button id="pn">Panier</button><button data-v="o">Commandes</button><button id="acc">Compte</button><button id="adb" data-v="a" hidden>Gestionnaire</button></nav>
+<div id="toast" role="status"></div>
+
+<dialog id="dc"><h2>Mon panier</h2><div id="cl"></div><form id="of">
+<label>Nom<input name="name" required autocomplete="name"></label><label>Téléphone<input name="phone" type="tel" required autocomplete="tel" placeholder="07 08 99 67 60"></label>
+<label>Commune<select name="commune" id="cs" required></select></label><label>Adresse (quartier, repère)<input name="address" required></label><label>Note (facultatif)<textarea name="note" rows="2"></textarea></label>
+<button class="pri" id="osub">Valider la commande</button></form><button class="lnk" onclick="dc.close()">Continuer mes achats</button></dialog>
+<dialog id="dd"><h2>Commande enregistrée</h2><p id="dm"></p><a class="pri" id="wa" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Envoyer sur WhatsApp</a><button class="lnk" onclick="dd.close()">Fermer</button></dialog>
+<dialog id="da"><h2 id="at">Connexion</h2><form id="af"><div id="an" hidden><label>Nom<input name="name"></label></div>
+<label>Téléphone<input name="phone" type="tel" required></label><label>Mot de passe (6 caractères min.)<input name="pw" type="password" minlength="6" required></label>
+<button class="pri">Valider</button></form><button class="lnk" id="as">Créer un compte</button><button class="lnk" id="ao" hidden>Se déconnecter</button><button class="lnk" onclick="da.close()">Fermer</button><div id="mo"></div></dialog>
+<dialog id="dp"><h2>Produit</h2><form id="pf"><input type="hidden" name="id"><label>Nom<input name="name" required></label><label>Catégorie<input name="category" required list="cats"></label><datalist id="cats"></datalist>
+<label>Description<textarea name="description" rows="2"></textarea></label><label>Formats et prix (ex : Petit:8000, Grand:10000 — ou juste 8000)<input name="variants" required></label>
+<label>Photo<input name="file" type="file" accept="image/*"></label><label><input name="active" type="checkbox" checked style="width:auto"> Visible dans la boutique</label><button class="pri">Enregistrer</button></form><button class="lnk" onclick="dp.close()">Annuler</button></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="config.js"></script>
+<script>
+const C=window.KTIZ,$=s=>document.querySelector(s),F=n=>String(n).replace(/\B(?=(\d{3})+$)/g,' ')+' F',E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sb=C.SUPABASE_URL&&window.supabase?supabase.createClient(C.SUPABASE_URL,C.SUPABASE_KEY):null;
+const v=(...a)=>a.map(x=>typeof x=='number'?{l:'',p:x}:{l:x[0],p:x[1]});
+const DEF=[['Gel douche gommant curcuma','Gel douche',v(8000),'curcuma'],['Gel douche cocktail','Gel douche',v(8000),'cocktail'],['Gel douche hibiscus','Gel douche',v(8000),'hibiscus'],['Savon noir','Savon',v(5000),'savon-noir'],['Savon visage','Savon',v(['Petit',2500],['Grand',3500])],['Crème corps Lumina','Crème corps',v(['Petit',8000],['Moyen',10000],['Grand',15000]),'creme-corps'],['Chantilly apaisante hydratante','Crème corps',v(7000),'chantilly'],['Crème correctrice visage','Crème corps',v(5000),'correctrice'],['Effaceur ébène','Crème corps',v(2500)],['Lotion traitante','Autres',v(['Petit',3500],['25 ml',5000]),'lotion'],['Sérum vitamine C','Autres',v(5000)]].map((a,i)=>({id:'d'+i,name:a[0],category:a[1],variants:a[2],image_url:a[3]?`img/${a[3]}.jpg`:null,active:true}));
+let P=[],cart=JSON.parse(localStorage.getItem('kc')||'[]'),cat='Tout',user=null,isAdm=false,sign=false;
+const save=()=>localStorage.setItem('kc',JSON.stringify(cart)),tot=()=>cart.reduce((s,i)=>s+i.p*i.q,0);
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3000)}
+async function load(){let d=null;if(sb){const r=await sb.from('products').select('*').eq('active',true).order('sort');if(!r.error&&r.data?.length)d=r.data}P=d||DEF;draw()}
+function draw(){const cs=['Tout',...new Set(P.map(p=>p.category))];$('#chips').innerHTML=cs.map(c=>`<button class="${c==cat?'on':''}" data-c="${E(c)}">${E(c)}</button>`).join('');
+$('#grid').innerHTML=P.filter(p=>cat=='Tout'||p.category==cat).map(p=>{const vs=p.variants||[],min=Math.min(...vs.map(x=>x.p));
+return`<article class="card"><div class="im ${p.image_url?'':'no'}">${p.image_url?`<img src="${E(p.image_url)}" alt="${E(p.name)}" loading="lazy">`:'<img src="img/logo.jpg" alt="">'}</div><div class="b"><h3>${E(p.name)}</h3><span class="price">${vs.length>1?'dès ':''}${F(min)}</span>
+${vs.length>1?`<select aria-label="Format">${vs.map((x,i)=>`<option value="${i}">${E(x.l)} · ${F(x.p)}</option>`).join('')}</select>`:''}<button class="add" data-id="${p.id}">Ajouter</button></div></article>`}).join('');bar()}
+$('#chips').onclick=e=>{if(e.target.dataset.c){cat=e.target.dataset.c;draw()}};
+$('#grid').onclick=e=>{const b=e.target.closest('.add');if(!b)return;const p=P.find(x=>x.id==b.dataset.id),s=b.parentNode.querySelector('select'),x=p.variants[s?s.value:0],k=p.id+'|'+x.l,f=cart.find(i=>i.k==k);
+f?f.q++:cart.push({k,name:p.name,l:x.l,p:x.p,q:1});save();bar();toast('Ajouté au panier')};
+function bar(){const n=cart.reduce((s,i)=>s+i.q,0);$('#pn').textContent='Panier'+(n?` (${n})`:'')}function _bar(){const n=cart.reduce((s,i)=>s+i.q,0),b=$('#bar');b.style.display=n?'flex':'none';$('#bn').textContent=`Voir le panier (${n})`;$('#bt').textContent=F(tot())}
+function cl(){$('#cl').innerHTML=cart.length?cart.map((i,x)=>`<div class="row"><div>${E(i.name)}<br><small>${E(i.l)} ${F(i.p)}</small></div><div class="q"><button data-x="${x}" data-d="-1" aria-label="Moins">−</button> ${i.q} <button data-x="${x}" data-d="1" aria-label="Plus">+</button></div></div>`).join('')+`<p>Livraison : <span id="lf"></span><br><b>Total : <span id="tt"></span></b></p>`:'<p>Votre panier est vide.</p>';$('#of').hidden=!cart.length;fillC();upd()}
+const DEFC=[['Abobo',1500],['Adjamé',1500],['Anyama',2500],['Attécoubé',1500],['Bingerville',2500],['Cocody',1500],['Koumassi',1500],['Marcory',1500],['Plateau',1500],['Port-Bouët',2000],['Songon',3000],['Treichville',1500],['Yopougon',1500]].map(a=>({name:a[0],fee:a[1]}));let CM2=[];
+function fillC(){const s=$('#cs'),c=s.value;s.innerHTML='<option value="">Choisir…</option>'+CM2.map(x=>`<option value="${E(x.name)}" data-fee="${x.fee}">${E(x.name)} · ${F(x.fee)}</option>`).join('');s.value=c}
+const fee=()=>+($('#cs').selectedOptions[0]?.dataset.fee||0);
+function upd(){const l=$('#lf');if(l){l.textContent=$('#cs').value?F(fee()):'choisissez la commune';$('#tt').textContent=F(tot()+fee())}}$('#cs').onchange=upd;
+async function loadC(){let d=null;if(sb){const r=await sb.from('communes').select('*').eq('active',true).order('name');if(!r.error&&r.data?.length)d=r.data}CM2=d||DEFC;fillC()}
+async function myOrders(){let d=JSON.parse(localStorage.getItem('ko')||'[]');if(sb&&user){const r=await sb.from('orders').select('*').order('created_at',{ascending:false});if(r.data)d=r.data}
+$('#ord').innerHTML='<h2>Mes commandes</h2>'+(d.map(o=>`<div class="ord"><b>${E(o.ref)}</b> · ${new Date(o.created_at).toLocaleDateString('fr-FR')}<ul>${(o.items||[]).map(i=>`<li>${i.q} x ${E(i.name)} ${E(i.l)}</li>`).join('')}</ul><b>${F(o.total)}</b> · ${E(o.status)}</div>`).join('')||'<p>Aucune commande pour le moment.</p>')+(user?'':'<p><small>Connectez-vous pour retrouver vos commandes sur tous vos appareils.</small></p>')}
+$('#pn').onclick=()=>{cl();dc.showModal()};
+$('#cl').onclick=e=>{const x=e.target.dataset.x;if(x==null)return;cart[x].q+=+e.target.dataset.d;if(cart[x].q<1)cart.splice(x,1);save();cl();bar()};
+$('#of').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),o={ref:'KC'+Date.now().toString(36).toUpperCase().slice(-6),name:f.get('name'),phone:f.get('phone'),address:f.get('address'),note:f.get('note'),commune:f.get('commune'),delivery_fee:fee(),items:cart,total:tot()+fee(),user_id:user?.id??null};
+$('#osub').disabled=true;if(sb){const{error}=await sb.from('orders').insert(o);if(error){$('#osub').disabled=false;return toast('Erreur : '+error.message)}}
+const m=`Bonjour Ktiz Care Beauty, commande ${o.ref}\n`+cart.map(i=>`- ${i.q} x ${i.name} ${i.l} (${F(i.p*i.q)})`).join('\n')+`\nLivraison (${o.commune}) : ${F(o.delivery_fee)}\nTotal : ${F(o.total)}\nNom : ${o.name}\nTél : ${o.phone}\nAdresse : ${o.address}`+(o.note?`\nNote : ${o.note}`:'');
+$('#wa').href=`https://wa.me/${C.WHATSAPP}?text=${encodeURIComponent(m)}`;$('#dm').textContent=`Référence ${o.ref}. Envoyez le récapitulatif sur WhatsApp pour confirmer. Pensez à commander la veille pour être livré le lendemain.`;
+{const h=JSON.parse(localStorage.getItem('ko')||'[]');h.unshift({ref:o.ref,total:o.total,items:cart,created_at:new Date().toISOString(),status:'Envoyée'});localStorage.setItem('ko',JSON.stringify(h.slice(0,30)))}cart=[];save();bar();$('#osub').disabled=false;e.target.reset();dc.close();dd.showModal()};
+/* Compte */
+const em=p=>p.replace(/\D/g,'')+'@ktiz.ci';
+async function sess(){if(!sb)return;const{data}=await sb.auth.getSession();user=data.session?.user||null;isAdm=false;
+if(user){const r=await sb.from('profiles').select('role,name').eq('id',user.id).single();isAdm=r.data?.role=='admin';$('#acc').textContent=r.data?.name||'Compte'}else $('#acc').textContent='Compte';
+$('#adb').hidden=!isAdm;$('#ao').hidden=!user;$('#af').hidden=!!user;$('#as').hidden=!!user;$('#at').textContent=user?'Mon compte':sign?'Créer un compte':'Connexion'}
+$('#acc').onclick=()=>{if(!sb)return toast('Connexion indisponible : Supabase non configuré');da.showModal()};
+$('#as').onclick=()=>{sign=!sign;$('#an').hidden=!sign;$('#at').textContent=sign?'Créer un compte':'Connexion';$('#as').textContent=sign?'J’ai déjà un compte':'Créer un compte'};
+$('#af').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),phone=f.get('phone'),pw=f.get('pw');
+const r=sign?await sb.auth.signUp({email:em(phone),password:pw,options:{data:{name:f.get('name'),phone:phone.replace(/\D/g,'')}}}):await sb.auth.signInWithPassword({email:em(phone),password:pw});
+if(r.error)return toast(r.error.message=='Invalid login credentials'?'Téléphone ou mot de passe incorrect':r.error.message);await sess();da.close();toast('Connecté')};
+$('#ao').onclick=async()=>{await sb.auth.signOut();await sess();go('s');da.close()};
+/* Admin */
+let tab='o';const ST=['Nouvelle','Confirmée','En livraison','Livrée','Annulée'];
+function go(v){const m={s:'#shop',o:'#ord',a:'#adm'};for(const k in m)$(m[k]).hidden=k!=v;document.querySelectorAll('#nv [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(v=='a')adm();if(v=='o')myOrders();scrollTo(0,0)}
+$('#nv').onclick=e=>{const v=e.target.dataset.v;if(v)go(v)};
+async function adm(){const A=$('#adm');A.innerHTML=`<h2>Gestionnaire</h2><div class="tabs"><button class="ib" style="color:var(--wine);border-color:var(--gold)" data-t="o">Commandes</button><button class="ib" style="color:var(--wine);border-color:var(--gold)" data-t="p">Produits</button><button class="ib" style="color:var(--wine);border-color:var(--gold)" data-t="s">Réglages</button></div><div id="ab"></div>`;
+A.querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t==tab));
+if(tab=='o'){const{data=[]}=await sb.from('orders').select('*').order('created_at',{ascending:false}).limit(100);
+$('#ab').innerHTML=data.map(o=>`<div class="ord"><b>${E(o.ref)}</b> · ${new Date(o.created_at).toLocaleString('fr-FR')}<br>${E(o.name)} · <a href="tel:${E(o.phone)}">${E(o.phone)}</a><br>${E(o.commune)} · ${E(o.address)}${o.note?`<br><i>${E(o.note)}</i>`:''}
+<ul>${(o.items||[]).map(i=>`<li>${i.q} x ${E(i.name)} ${E(i.l)}</li>`).join('')}</ul><b>${F(o.total)}</b> <select data-o="${o.id}">${ST.map(s=>`<option ${s==o.status?'selected':''}>${s}</option>`).join('')}</select></div>`).join('')||'<p>Aucune commande.</p>'}
+else if(tab=='p'){const{data=[]}=await sb.from('products').select('*').order('sort');window.AP=data;$('#cats').innerHTML=[...new Set(data.map(p=>p.category))].map(c=>`<option value="${E(c)}">`).join('');
+$('#ab').innerHTML=`<button class="pri" data-n="1">+ Nouveau produit</button>`+data.map(p=>`<div class="row"><div>${E(p.name)}${p.active?'':' (masqué)'}<br><small>${E(p.category)} · ${p.variants.map(x=>F(x.p)).join(' / ')}</small></div><div><button class="lnk" data-e="${p.id}">Modifier</button><button class="lnk" data-del="${p.id}">Supprimer</button></div></div>`).join('')}else{await sets()}}
+async function sets(){const{data=[]}=await sb.from('communes').select('*').order('name');$('#ab').innerHTML=`<h3>Communes et frais de livraison</h3><form id="cf" class="row"><input name="n" placeholder="Commune" required><input name="f" type="number" min="0" placeholder="Frais (F)" required style="width:110px"><button class="ib on">Ajouter</button></form>`+data.map(c=>`<div class="row"><b>${E(c.name)}</b><div><input type="number" min="0" value="${c.fee}" data-cf="${c.id}" style="width:100px"> F <button class="lnk" data-dc="${c.id}">Supprimer</button></div></div>`).join('')}
+$('#adm').onsubmit=async e=>{if(e.target.id!='cf')return;e.preventDefault();const f=e.target,r=await sb.from('communes').insert({name:f.n.value.trim(),fee:+f.f.value});if(r.error)return toast(r.error.message);sets();loadC()};
+$('#adm').onclick=e=>{const d=e.target.dataset;if(d.dc&&confirm('Supprimer cette commune ?'))sb.from('communes').delete().eq('id',d.dc).then(()=>{sets();loadC()});if(d.t){tab=d.t;adm()}if(d.n)edit();if(d.e)edit(AP.find(p=>p.id==d.e));if(d.del&&confirm('Supprimer ce produit ?'))sb.from('products').delete().eq('id',d.del).then(()=>{adm();load()})};
+$('#adm').onchange=async e=>{if(e.target.dataset.cf){const{error}=await sb.from('communes').update({fee:+e.target.value}).eq('id',e.target.dataset.cf);if(!error)loadC();return toast(error?error.message:'Frais mis à jour')}if(e.target.dataset.o){const{error}=await sb.from('orders').update({status:e.target.value}).eq('id',e.target.dataset.o);toast(error?error.message:'Statut mis à jour')}};
+function edit(p={}){const f=$('#pf');f.reset();f.id.value=p.id||'';f.name.value=p.name||'';f.category.value=p.category||'';f.description.value=p.description||'';f.variants.value=(p.variants||[]).map(x=>x.l?`${x.l}:${x.p}`:x.p).join(', ');f.active.checked=p.id?p.active:true;dp.showModal()}
+$('#pf').onsubmit=async e=>{e.preventDefault();const f=e.target,vs=f.variants.value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>{const[a,b]=s.includes(':')?s.split(':'):['',s];return{l:a.trim(),p:parseInt(b.replace(/\D/g,''))}});
+if(vs.some(x=>!x.p))return toast('Prix invalide');const row={name:f.name.value,category:f.category.value,description:f.description.value,variants:vs,active:f.active.checked};
+const file=f.file.files[0];if(file){const path=Date.now()+'-'+file.name.replace(/[^\w.]/g,'_'),u=await sb.storage.from('produits').upload(path,file);if(u.error)return toast(u.error.message);row.image_url=sb.storage.from('produits').getPublicUrl(path).data.publicUrl}
+const r=f.id.value?await sb.from('products').update(row).eq('id',f.id.value):await sb.from('products').insert(row);if(r.error)return toast(r.error.message);dp.close();adm();load()};
+/* PWA */
+let ip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;$('#ins').hidden=false});$('#ins').onclick=()=>{ip?.prompt();$('#ins').hidden=true};
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+load();loadC();sess();
+</script></body></html>
